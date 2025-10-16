@@ -1,8 +1,12 @@
 # E-TICARET
                                          SQL ve Power BI kullanarak Derimont satışları ile ilgili satış verileri üzerinde veri analizi, raporlama ve görselleştirme projesi.
 PROJE HAKKINDA
-Bu proje, derimont üzerine Bir E-Tıcaret  üzerine hazırlanmış bir SQL Server veri tabanı ve Power BI görsel raporlarını içermektedir. Amaç; satış, mağaza, personel ve müşteri bazlı analizler yaparak iş zekâsı raporları üretmektir.
+Bu proje, derimont üzerine Bir E-Tıcaret  üzerine hazırlanmış bir SQL Server veri tabanı ve Power BI görsel raporlarını içermektedir.
+
+Amaç; satış, mağaza, personel ve müşteri bazlı analizler yaparak iş zekâsı raporları üretmektir.
+
 Veritabanı yapımı SQL üzerinden oluşturulmuştur. Sql ile çektiğim sorgulararı power bı ile görselleştirdim. 
+
 Kurulum ve Kullanım
 
 1️⃣ SQL Server’da audı veri tabanı.sql dosyasını çalıştırarak veritabanını oluşturun.
@@ -16,8 +20,11 @@ Kurulum ve Kullanım
 💡 Öne Çıkan Analizler
 
  Satış Analizi: Şehir ve Ürün bazlı toplam satışlar,Satş adetleri,Personellerin satış performansları,Yıllara göre toplam karlılık,Hangi ay satışların yüksek olduğu vs.
- ## ÖRNEKLER Select S.City,
+ 
+ ## ÖRNEKLER
+ 
 -- 7-hangi şehirde ne kadar satış yapılmış  
+
 Select S.City,
 sum(O.Quantity*P.SalePrice) as TotalAmount
 from Orders O
@@ -27,6 +34,7 @@ group by s.City
 order by TotalAmount desc
 
 ##--10-Bursa'daki satışların toplam tutarı  
+
 Select S.City,
 sum(O.Quantity*P.SalePrice) as TotalAmount
 from Orders O
@@ -37,7 +45,9 @@ group by S.City
 order by TotalAmount desc
 
 👥 Müşteri Analizi: En çok alışveriş yapan müşteriler,Adet bazlı sipariş sayıları,İlk siparişinden bugune kadar geçen zaman,Müşterini en çok tercih ettiği beden ve renkler.
+
 ##-13-en yüksek toplam harcama yapan müşteriler (Toplam Tutar) 
+
 Select C.CustomerName,C.CustomerLastName,
 sum(O.Quantity*P.SalePrice) as TotalAmount
 from Orders O
@@ -47,6 +57,7 @@ GROUP BY C.CustomerName,C.CustomerLastName
 ORDER BY TotalAmount DESC
 
 ##  --23. Müşteri ilk siparişinden bugüne kaç gün geçmiş? 
+
  Select C.CustomerName,C.CustomerLastName,
  min(O.OrderDate) as FirstOrder,
  datediff(day,min(O.OrderDate),getdate()) as DaysPassed
@@ -58,7 +69,9 @@ ORDER BY TotalAmount DESC
 
 💼 Mağaza Performansı: Bölge bazlı ciro karşılaştırmaları, Mağaza bazlı satış karlılıkları,Aylık Toplam Karlılık 
 
+
  ##   --33--A/B Testi Karşılaştırma son 30 günde bu mağazalardaki satışlar Bursa-Ankara 
+ 
 Select S.StoreName,
 count(O.OrderId) as OrderCount,
 sum(O.Quantity*P.SalePrice) as TotalAmount,
@@ -84,6 +97,7 @@ group by Format(O.OrderDate,'yyyy-MM')
 order by Month
 
 Daha sonra veri tabanımı POWER BI İLE GÖRSELLEŞTİRDİM:
+
 
 <img width="1312" height="806" alt="POWER BI GÖRSEL 1" src="https://github.com/user-attachments/assets/3a2bc905-7ff6-45f6-8315-64e2340bec0b" />
 
