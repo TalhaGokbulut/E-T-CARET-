@@ -42,34 +42,54 @@ order by TotalAmount desc
 ##--10-Bursa'daki satışların toplam tutarı  
 
 Select S.City,
+
 sum(O.Quantity*P.SalePrice) as TotalAmount
+
 from Orders O
+
 join Products P on P.ProductId=O.ProductId
+
 join Stores S on S.StoreId=o.StoreId
+
 where city='Bursa'
+
 group by S.City
+
 order by TotalAmount desc
+
 
 👥 Müşteri Analizi: En çok alışveriş yapan müşteriler,Adet bazlı sipariş sayıları,İlk siparişinden bugune kadar geçen zaman,Müşterini en çok tercih ettiği beden ve renkler.
 
 ##-13-en yüksek toplam harcama yapan müşteriler (Toplam Tutar) 
 
 Select C.CustomerName,C.CustomerLastName,
+
 sum(O.Quantity*P.SalePrice) as TotalAmount
+
 from Orders O
+
 join Products P on P.ProductId=O.ProductId
+
 join Customers C on C.CustomerId=o.CustomerId
+
 GROUP BY C.CustomerName,C.CustomerLastName
+
 ORDER BY TotalAmount DESC
 
 ##  --23. Müşteri ilk siparişinden bugüne kaç gün geçmiş? 
 
  Select C.CustomerName,C.CustomerLastName,
+ 
  min(O.OrderDate) as FirstOrder,
+ 
  datediff(day,min(O.OrderDate),getdate()) as DaysPassed
+ 
  from Orders O
+ 
  join Customers C on C.CustomerId=o.CustomerId
+ 
  GROUP BY C.CustomerName,C.CustomerLastName
+ 
  order by DaysPassed desc
 
 
@@ -79,15 +99,25 @@ ORDER BY TotalAmount DESC
  ##   --33--A/B Testi Karşılaştırma son 30 günde bu mağazalardaki satışlar Bursa-Ankara 
  
 Select S.StoreName,
+
 count(O.OrderId) as OrderCount,
+
 sum(O.Quantity*P.SalePrice) as TotalAmount,
+
 sum(O.Quantity) as TotalQuantity,
+
 avg(O.Quantity*P.SalePrice) as AvgTotalAmount
+
 from Orders O
+
 join Products P on P.ProductId=O.ProductId
+
 join Stores S on S.StoreId=o.StoreId
+
 WHERE City in ('Bursa','Ankara') and O.OrderDate >=DATEADD(day,-30,getdate())
+
 group by S.StoreName
+
 order by TotalAmount
 
 
@@ -95,11 +125,17 @@ order by TotalAmount
 📈 Trend İncelemesi: Aylık satış değişimleri,Yıllık Satış değişimleri
 
 ##--15-aylık sipariş sayısı adet  
+
 select
+
 format(O.OrderDate,'yyyy-MM') as Month,
+
 sum(O.Quantity) as TotalQuantity
+
 from Orders O
+
 group by Format(O.OrderDate,'yyyy-MM')
+
 order by Month
 
 Daha sonra veri tabanımı POWER BI İLE GÖRSELLEŞTİRDİM:
@@ -109,6 +145,15 @@ Daha sonra veri tabanımı POWER BI İLE GÖRSELLEŞTİRDİM:
 
 
 
+
+<img width="1314" height="809" alt="POWER BI GÖRSEL 2" src="https://github.com/user-attachments/assets/c600f3ec-16ee-4b81-bc7c-e4a180d35ec2" />
+
+
+
+
+
+
+<img width="1314" height="808" alt="POWER BI GORSEL-3" src="https://github.com/user-attachments/assets/c4501436-9046-4d68-a6d7-772037ad6ebc" />
 
 
 
