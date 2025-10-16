@@ -139,6 +139,7 @@ from Orders O
 group by Format(O.OrderDate,'yyyy-MM')
 
 order by Month
+```
 
 Daha sonra veri tabanımı POWER BI İLE GÖRSELLEŞTİRDİM:
 
