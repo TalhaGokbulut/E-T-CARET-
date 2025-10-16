@@ -126,6 +126,8 @@ order by TotalAmount
 
 ##--15-aylık sipariş sayısı adet  
 
+```sql
+
 select
 
 format(O.OrderDate,'yyyy-MM') as Month,
