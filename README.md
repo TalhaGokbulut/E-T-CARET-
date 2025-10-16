@@ -25,7 +25,7 @@ Kurulum ve Kullanım
  
 -- 7-hangi şehirde ne kadar satış yapılmış  
 
-```
+```sql
 
 Select S.City,
 
@@ -45,7 +45,7 @@ order by TotalAmount desc
 
 ##--10-Bursa'daki satışların toplam tutarı  
 
-```
+```sql
 
 Select S.City,
 
@@ -70,7 +70,7 @@ order by TotalAmount desc
 
 ##-13-en yüksek toplam harcama yapan müşteriler (Toplam Tutar) 
 
-```
+```sql
 
 Select C.CustomerName,C.CustomerLastName,
 
@@ -90,7 +90,7 @@ ORDER BY TotalAmount DESC
 
 ##  --23. Müşteri ilk siparişinden bugüne kaç gün geçmiş? 
 
-```
+```sql
 
  Select C.CustomerName,C.CustomerLastName,
  
@@ -114,7 +114,7 @@ ORDER BY TotalAmount DESC
 
  ##   --33--A/B Testi Karşılaştırma son 30 günde bu mağazalardaki satışlar Bursa-Ankara 
 
- ```
+ ```sql
 Select S.StoreName,
 
 count(O.OrderId) as OrderCount,
