@@ -25,6 +25,8 @@ Kurulum ve Kullanım
  
 -- 7-hangi şehirde ne kadar satış yapılmış  
 
+```
+
 Select S.City,
 
 sum(O.Quantity*P.SalePrice) as TotalAmount
@@ -39,7 +41,11 @@ group by s.City
 
 order by TotalAmount desc
 
+```
+
 ##--10-Bursa'daki satışların toplam tutarı  
+
+```
 
 Select S.City,
 
@@ -57,10 +63,14 @@ group by S.City
 
 order by TotalAmount desc
 
+```
+
 
 👥 Müşteri Analizi: En çok alışveriş yapan müşteriler,Adet bazlı sipariş sayıları,İlk siparişinden bugune kadar geçen zaman,Müşterini en çok tercih ettiği beden ve renkler.
 
 ##-13-en yüksek toplam harcama yapan müşteriler (Toplam Tutar) 
+
+```
 
 Select C.CustomerName,C.CustomerLastName,
 
@@ -76,7 +86,11 @@ GROUP BY C.CustomerName,C.CustomerLastName
 
 ORDER BY TotalAmount DESC
 
+```
+
 ##  --23. Müşteri ilk siparişinden bugüne kaç gün geçmiş? 
+
+```
 
  Select C.CustomerName,C.CustomerLastName,
  
@@ -92,11 +106,15 @@ ORDER BY TotalAmount DESC
  
  order by DaysPassed desc
 
+```
+
 
 💼 Mağaza Performansı: Bölge bazlı ciro karşılaştırmaları, Mağaza bazlı satış karlılıkları,Aylık Toplam Karlılık 
 
 
  ##   --33--A/B Testi Karşılaştırma son 30 günde bu mağazalardaki satışlar Bursa-Ankara 
+
+ ```
  
 Select S.StoreName,
 
@@ -119,6 +137,8 @@ WHERE City in ('Bursa','Ankara') and O.OrderDate >=DATEADD(day,-30,getdate())
 group by S.StoreName
 
 order by TotalAmount
+
+```
 
 
 
