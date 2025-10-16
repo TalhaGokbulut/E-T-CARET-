@@ -26,11 +26,17 @@ Kurulum ve Kullanım
 -- 7-hangi şehirde ne kadar satış yapılmış  
 
 Select S.City,
+
 sum(O.Quantity*P.SalePrice) as TotalAmount
+
 from Orders O
+
 join Products P on P.ProductId=O.ProductId
+
 join Stores s ON S.StoreId=O.StoreId
+
 group by s.City
+
 order by TotalAmount desc
 
 ##--10-Bursa'daki satışların toplam tutarı  
