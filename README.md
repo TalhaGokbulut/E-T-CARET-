@@ -115,7 +115,6 @@ ORDER BY TotalAmount DESC
  ##   --33--A/B Testi Karşılaştırma son 30 günde bu mağazalardaki satışlar Bursa-Ankara 
 
  ```
- 
 Select S.StoreName,
 
 count(O.OrderId) as OrderCount,
@@ -137,7 +136,6 @@ WHERE City in ('Bursa','Ankara') and O.OrderDate >=DATEADD(day,-30,getdate())
 group by S.StoreName
 
 order by TotalAmount
-
 ```
 
 
